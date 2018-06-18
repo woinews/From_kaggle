@@ -14,7 +14,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # read in all our data
-kickstarters_2017_data = open(r'../ks-projects-201801.csv','r',encoding='utf8')
+kickstarters_2017_data = open(r'../ks-projects-201801.csv','r',encoding='utf8')  
+#在我的电脑上数据保存路径有中文，直接读取会出错，建议将数据保存路径改为全英文
 kickstarters_2017 = pd.read_csv(kickstarters_2017_data)
 
 # set seed for reproducibility
