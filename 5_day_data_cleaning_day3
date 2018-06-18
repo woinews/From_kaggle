@@ -1,0 +1,37 @@
+# modules we'll use
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import datetime
+
+# read in our data
+earthquakes = pd.read_csv(r"D:\day3\earthquake-database\database.csv")
+landslides = pd.read_csv(r"D:\day3\landslide-events\catalog.csv")
+volcanos = pd.read_csv(r"D:\day3\volcanic-eruptions\database.csv")
+
+# set seed for reproducibility
+np.random.seed(0)
+# print the first few rows of the date column
+print(landslides['date'].head())
+# check the data type of our date column
+landslides['date'].dtype
+# create a new column, date_parsed, with the parsed dates
+landslides['date_parsed'] = pd.to_datetime(landslides['date'], format = "%m/%d/%y")
+# strftime directive:http://strftime.org/
+# print the first few rows
+print(landslides['date_parsed'].head())
+#What if I run into an error with multiple date formats?
+#landslides['date_parsed'] = pd.to_datetime(landslides['Date'], infer_datetime_format=True)
+earthquakes['date_parsed'] = pd.to_datetime(earthquakes['Date'], format = "%M/%d/%Y", infer_datetime_format=True)
+earthquakes['date_parsed'].head()
+
+# get the day of the month from the date_parsed column
+day_of_month_landslides = landslides['date_parsed'].dt.day
+# Your turn! get the day of the month from the date_parsed column
+day_of_month_earthquakes = earthquakes['date_parsed'].dt.day
+
+# remove na's
+day_of_month_landslides = day_of_month_landslides.dropna()
+
+# plot the day of the month
+sns.distplot(day_of_month_landslides, kde=False, bins=31)
