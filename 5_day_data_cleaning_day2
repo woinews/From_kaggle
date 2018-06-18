@@ -49,3 +49,4 @@ sns.distplot(positive_pledges, ax=ax[0])
 ax[0].set_title("Original Data")
 sns.distplot(normalized_pledges, ax=ax[1])
 ax[1].set_title("Normalized data")
+
